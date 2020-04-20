@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText login_username = findViewById(R.id.login_username);
         final EditText login_password = findViewById(R.id.login_password);
 
+        //md5加密
         try {
             md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
