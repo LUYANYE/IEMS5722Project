@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        // 登录按钮
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // 注册按钮
         btn_registered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // 进入著作声明页面按钮
         btn_copyright.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
