@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import hk.edu.cuhk.ie.iems5722.group21.R;
 
+// 陈述著作申明的界面
 public class AboutusActivity extends AppCompatActivity {
 
     @Override

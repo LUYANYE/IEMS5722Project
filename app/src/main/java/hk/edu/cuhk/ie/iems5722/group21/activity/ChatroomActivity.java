@@ -75,6 +75,7 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
         }
     };
 
+    // 接受广播刷新消息
     private Emitter.Listener Message_Broadcast = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -195,7 +196,7 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
 
                 String message = editText.getText()+"";
                 if(message.length()==0){
-                    Toast t = Toast.makeText(ChatroomActivity.this,"内容不能为空！", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(ChatroomActivity.this,"empty content！", Toast.LENGTH_LONG);
                     t.show();
                     return;
                 }
@@ -250,6 +251,7 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
             e.printStackTrace();
         }
         Log.v("leave the room", String.valueOf(chatroom_id));
+        //先退出房间再断开连接
         socket.emit("leave", json);
         if (socket != null) {
             socket.disconnect();

@@ -62,8 +62,10 @@ public class SignupActivity extends AppCompatActivity {
                     t.show();
                     return;
                 }
+                // 先MD5加密再发送
                 md.update(password.getBytes());
                 String encodepwd = new BigInteger(1,md.digest()).toString(16);
+                // 随机id 9位
                 int user_id = Math.abs(random.nextInt());
                 SignupTask signupTask =
                        new SignupTask(SignupActivity.this, url, user_id, username, encodepwd);
