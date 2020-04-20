@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/signup"
+    tools:context="hk.edu.cuhk.ie.iems5722.group21.activity.SignupActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/sign_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/galaxy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Sign_up Page"
+        app:titleTextColor="#ffffff"/>
+
+    <EditText
+        android:id="@+id/Signup_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:layout_marginTop="200dp"
+        android:hint="@string/hint_username"
+        android:textColorHint="@color/app_white"
+        android:textColor="@color/app_white" />
+
+    <EditText
+        android:id="@+id/Signup_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/Signup_username"
+        android:textColor="@color/app_white"
+        android:textColorHint="@color/app_white"/>
+
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Signup_password"
+        android:layout_marginTop="35dp"
+        android:background="@color/app_blue"
+        android:text="@string/registration"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/app_white" />
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    tools:context="hk.edu.cuhk.ie.iems5722.group21.activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/cuhk"/>
+    <EditText
+        android:id="@+id/login_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:layout_marginTop="50dp"
+        android:hint="@string/hint_username"
+        android:textColorHint="@color/app_white"
+        android:textColor="@color/app_white"
+        android:layout_below="@id/login_image"/>
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/login_username"
+        android:textColor="@color/app_white"
+        android:textColorHint="@color/app_white"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_password"
+        android:layout_marginTop="35dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/button_confirm"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/app_white" />
+
+    <Button
+        android:id="@+id/btn_registered"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_login"
+        android:layout_marginTop="35dp"
+        android:background="@color/app_blue"
+        android:text="@string/registration"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/app_white" />
+
+    <Button
+        android:id="@+id/about_us"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_registered"
+        android:layout_marginTop="35dp"
+        android:background="#FF8000"
+        android:text="@string/about_us"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/app_white" />
+
+</RelativeLayout>

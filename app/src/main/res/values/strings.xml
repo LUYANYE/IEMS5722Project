@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">A2_1155130392</string>
+    <string name="course_name">IEMS5722</string>
+    <string name="back">Back</string>
+    <string name="button1">Default Chatroom</string>
+    <string name="button_confirm">Login</string>
+    <string name="registration">Sign up</string>
+    <string name="hint_username">your username</string>
+    <string name="hint_password">your password</string>
+    <string name="about_us">About Us</string>
+    <string name="copyright">"This project is the final project of Mobile Network Programming and Distributed server Architecture(IEMS5722).\n"
+                "\n"
+                "Copyright © 2020 hk.edu.cuhk.ie.iems5722.group21. All Rights Reserved\n"
+                "\n"
+                "Authored by \n Zhengyu LU, \n Yunlong YANG"</string>
+</resources>
