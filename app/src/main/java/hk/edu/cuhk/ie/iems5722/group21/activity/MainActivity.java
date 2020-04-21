@@ -32,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         Bundle b = getIntent().getExtras();
-        if(b == null) return;
         String username = b.getString("name");
         String userid = b.getString("user_id");
+        if(b == null) {
+            username = User.current_user.getUsername();
+            userid = String.valueOf(User.current_user.getUser_id());
+        }
+
 
 
         User.current_user = new User(username,Integer.valueOf(userid));
