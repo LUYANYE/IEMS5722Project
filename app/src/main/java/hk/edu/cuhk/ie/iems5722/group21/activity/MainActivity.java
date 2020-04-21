@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             userid = String.valueOf(User.current_user.getUser_id());
         }
 
-
-
         User.current_user = new User(username,Integer.valueOf(userid));
         StringBuilder stringBuilder = new StringBuilder();
 
