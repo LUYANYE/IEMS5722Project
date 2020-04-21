@@ -30,9 +30,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         Bundle b = getIntent().getExtras();
+        if(b == null) return;
         String username = b.getString("name");
         String userid = b.getString("user_id");
+
 
         User.current_user = new User(username,Integer.valueOf(userid));
         StringBuilder stringBuilder = new StringBuilder();

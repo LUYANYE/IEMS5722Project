@@ -82,6 +82,7 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
             try {
                 JSONObject data = (JSONObject) args[0];
                 final String chatroomid = data.getString("chatroom_id");
+                final String message = data.getString("message");
                 //if(!chatroomid.equals(String.valueOf(chatroom_id))) return;
                 Log.v("before the message", chatroomid);
                 runOnUiThread(new Runnable() {
@@ -94,8 +95,8 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
                         // 设置通知
                         NotificationManager notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                         Notification notification = new NotificationCompat.Builder(ChatroomActivity.this,channeId)
-                                .setContentTitle("Messages Received")  //设置标题
-                                .setContentText("message from : " + chatroom_name) //设置内容
+                                .setContentTitle(chatroom_name)  //设置标题
+                                .setContentText(message) //设置内容
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                                 .setWhen(System.currentTimeMillis())  //设置时间
                                 .setSmallIcon(R.drawable.cuhk)  //设置小图标
