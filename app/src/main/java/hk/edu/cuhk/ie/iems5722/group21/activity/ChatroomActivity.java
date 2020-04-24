@@ -82,8 +82,8 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
             try {
                 JSONObject data = (JSONObject) args[0];
                 final String chatroomid = data.getString("chatroom_id");
+                final String chatroom_name = data.getString("chatroom_name");
                 final String message = data.getString("message");
-                //if(!chatroomid.equals(String.valueOf(chatroom_id))) return;
                 Log.v("before the message", chatroomid);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -91,7 +91,6 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
                         Log.v("get the message from ", chatroomid);
 //                        Toast t = Toast.makeText(ChatroomActivity.this,"message from chatroom_id : " + chatroomid, Toast.LENGTH_LONG);
 //                        t.show();
-                        String chatroom_name = chatroom_name(Integer.valueOf(chatroomid));
                         // 设置通知
                         NotificationManager notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                         Notification notification = new NotificationCompat.Builder(ChatroomActivity.this,channeId)
@@ -131,20 +130,6 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
             }
         }
     };
-
-    //return chatroom name accord to chatroomid
-    String chatroom_name(int chatroom_id){
-        String name = "";
-        switch(chatroom_id) {
-            case 1:
-                name =  "Public chatroom"; break;
-            case 2:
-                name = "General chatroom";break;
-            case 3:
-                name = "real-time chatroom";break;
-        }
-        return name;
-    }
 
     //获得url = "http://18.188.52.141/api/a3/get_messages"
     public String getUrl() {
