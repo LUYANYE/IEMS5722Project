@@ -8,6 +8,9 @@
     <string name="hint_username">your username</string>
     <string name="hint_password">your password</string>
     <string name="about_us">About Us</string>
+    <string name="main_hint">Operation:</string>
+    <string name="delete">Delete Room</string>
+    <string name="add">Add Room</string>
     <string name="copyright">"This project is the final project of Mobile Network Programming and Distributed server Architecture(IEMS5722).\n"
                 "\n"
                 "Copyright © 2020 hk.edu.cuhk.ie.iems5722.group21. All Rights Reserved\n"
