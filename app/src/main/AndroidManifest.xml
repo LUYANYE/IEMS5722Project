@@ -16,8 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.AddroomActivity"
+        <activity android:name=".activity.DelroomActivity"
                   android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.AddroomActivity"
+            android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.AboutusActivity" />
         <activity
             android:name=".activity.SignupActivity"

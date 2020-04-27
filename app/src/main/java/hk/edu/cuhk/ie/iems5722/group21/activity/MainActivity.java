@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = MainActivity.this;
                 Intent intent = new Intent(context, AddroomActivity.class);
+                //context.startActivity(intent);
+                startActivityForResult(intent,1);
+            }
+        });
+        Button btn_del = findViewById(R.id.left_del);
+        btn_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = MainActivity.this;
+                Intent intent = new Intent(context, DelroomActivity.class);
                 //context.startActivity(intent);
                 startActivityForResult(intent,1);
             }
@@ -93,6 +104,18 @@ public class MainActivity extends AppCompatActivity {
         FetchChatroomnameTask fetchChatroomnameTask =
                 new FetchChatroomnameTask(this,init_url,ChatroomList,adapter);
         fetchChatroomnameTask.execute();
+
+        ImageButton refresh = findViewById(R.id.main_RefreshButton);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChatroomList.clear();
+                String init_url = url + "?" + "user=" + User.current_user.getUser_id();
+                FetchChatroomnameTask fetchChatroomnameTask =
+                        new FetchChatroomnameTask(MainActivity.this,init_url,ChatroomList,adapter);
+                fetchChatroomnameTask.execute();
+            }
+        });
 
     }
 

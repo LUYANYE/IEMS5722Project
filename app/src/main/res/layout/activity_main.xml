@@ -20,7 +20,17 @@
         app:title="IEMS 5722"
         app:titleTextColor="#ffffff"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
+        >
+
+        <ImageButton
+            android:id="@+id/main_RefreshButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/refresh"
+            android:layout_gravity="end"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <ListView
         android:layout_width="match_parent"

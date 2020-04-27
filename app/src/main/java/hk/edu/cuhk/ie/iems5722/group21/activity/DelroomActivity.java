@@ -1,6 +1,7 @@
 package hk.edu.cuhk.ie.iems5722.group21.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -19,8 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,34 +27,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hk.edu.cuhk.ie.iems5722.group21.R;
+import hk.edu.cuhk.ie.iems5722.group21.adapter.ChatroomAdapter;
 import hk.edu.cuhk.ie.iems5722.group21.connect.Common;
 import hk.edu.cuhk.ie.iems5722.group21.connect.FetchUsernameTask;
+import hk.edu.cuhk.ie.iems5722.group21.connect.FetchownchatroomTask;
+import hk.edu.cuhk.ie.iems5722.group21.entity.Chatroom;
 import hk.edu.cuhk.ie.iems5722.group21.entity.User;
 
 
-//add chatroom
-public class AddroomActivity extends AppCompatActivity {
+// delete chat room
+public class DelroomActivity extends AppCompatActivity {
 
-    private ArrayList<User> UserList = new ArrayList<>();
-    private UserAdapter adapter;
+    private ArrayList<Chatroom> ChatroomList = new ArrayList<>();
+    private DelroomAdapter adapter;
     ListView listView;
-    private String url = "http://18.188.52.141/api/a3/get_users";
-    private String url2= "http://18.188.52.141/api/a3/add_room";
+    private String url = "http://18.188.52.141/api/a3/get_ownchatrooms";
+    private String url2= "http://18.188.52.141/api/a3/del_ownchatrooms";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addroom);
-        Toolbar toolbar = findViewById(R.id.add_toolbar);
+        setContentView(R.layout.activity_delroom);
+        Toolbar toolbar = findViewById(R.id.del_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
-        adapter = new UserAdapter(AddroomActivity.this, R.layout.users, UserList);
+        adapter = new DelroomAdapter(DelroomActivity.this, R.layout.chatrooms, ChatroomList);
         // Attach the adapter to a ListView
-        listView =  findViewById(R.id.username_list);
+        listView =  findViewById(R.id.delroom_list);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,19 +67,16 @@ public class AddroomActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+        String init_url = url + "?" + "owner=" + User.current_user.getUsername();
+        FetchownchatroomTask fetchownchatroomTask =
+                new FetchownchatroomTask(this,init_url ,ChatroomList,adapter);
+        fetchownchatroomTask.execute();
 
-        // get user list
-        FetchUsernameTask fetchUsernameTask =
-                new FetchUsernameTask(this,url,UserList,adapter);
-        fetchUsernameTask.execute();
-        final EditText editText = findViewById(R.id.add_name);
-
-        Button bt_confirm = findViewById(R.id.add_confirm);
-        bt_confirm.setOnClickListener(new View.OnClickListener() {
+        Button btn_del = findViewById(R.id.del_confirm);
+        btn_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //List<Integer> select_userid = new ArrayList<>();
-                StringBuilder menberlist = new StringBuilder();
+                StringBuilder roomlist = new StringBuilder();
                 SparseBooleanArray booleanArray = listView.getCheckedItemPositions();
                 for (int j = 0; j < booleanArray.size(); j++) {
                     int key = booleanArray.keyAt(j);
@@ -85,57 +84,50 @@ public class AddroomActivity extends AppCompatActivity {
                     if (booleanArray.get(key)) {
                         //这样mAdapter.getItem(key)就是选中的项
                         //select_userid.add(UserList.get(key).getUser_id());
-                        menberlist.append(UserList.get(key).getUser_id());
-                        menberlist.append(",");
+                        roomlist.append(ChatroomList.get(key).getId());
+                        roomlist.append(",");
                     } else {
                         //这里是用户刚开始选中，后取消选中的项
                     }
                 }
-                if(menberlist.toString().equals("")) {
-                    Toast t = Toast.makeText(AddroomActivity.this,
-                            "Contain at least one other member！", Toast.LENGTH_LONG);
+                String rl = roomlist.toString();
+                if(rl.equals("")) {
+                    Toast t = Toast.makeText(DelroomActivity.this,
+                            "No item selected！", Toast.LENGTH_LONG);
                     t.show();
                     return;
                 }
-                menberlist.append(User.current_user.getUser_id());
-                String mlist = menberlist.toString();
-                String ChatroomName = editText.getText()+"";
-                if("".equals(ChatroomName)){
-                    Toast t = Toast.makeText(AddroomActivity.this,
-                            "empty ChatroomName！", Toast.LENGTH_LONG);
-                    t.show();
-                    return;
-                }
-                AddroomTask addroomTask =
-                        new AddroomTask(AddroomActivity.this, url2, ChatroomName,
-                                User.current_user.getUsername(), mlist);
-                addroomTask.execute();
-                Log.d("selected_userid", mlist);
+                String roomlst = rl.substring(0,rl.length()-1);
+                DelroomTask delroomTask =
+                        new DelroomTask(DelroomActivity.this, url2,roomlst);
+                delroomTask.execute();
                 setResult(RESULT_OK);
                 finish();
+                Log.d("selected_roomid", roomlst);
             }
         });
+
     }
 
     //Adapter
-    public class UserAdapter extends ArrayAdapter<User> {
+    public class DelroomAdapter extends ArrayAdapter<Chatroom> {
 
         private int resourceId;
 
-        public UserAdapter(Context context, int textViewResourceId, List<User> Userlst) {
-            super(context, textViewResourceId, Userlst);
+        public DelroomAdapter(Context context, int textViewResourceId, List<Chatroom> Chatroomlst) {
+            super(context, textViewResourceId, Chatroomlst);
             resourceId = textViewResourceId;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            final User user = getItem(position);
+            final Chatroom chatroom = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(resourceId, null);
             }
-            TextView user_name =  convertView.findViewById(R.id.user_name);
+            TextView user_name =  convertView.findViewById(R.id.chatroom_name);
             // Populate the data into the template view using the data object
-            user_name.setText(user.getUsername());
+            user_name.setText(chatroom.getRoom_name());
             // Return the completed view to render on screen
 
             if(listView.isItemChecked(position)) {
@@ -148,22 +140,17 @@ public class AddroomActivity extends AppCompatActivity {
         }
     }
 
-
     //httpTask
-    class AddroomTask extends AsyncTask<Void,Integer,String> {
+    class DelroomTask extends AsyncTask<Void,Integer,String> {
 
         private Context context;
         private String url;
-        private String ChatroomName;
-        private String owner;
-        private String memberlist;
+        private String roomlist;
 
-        public AddroomTask(Context context ,String url, String ChatroomName, String owner, String memberlist){
+        public DelroomTask(Context context ,String url, String roomlist){
             this.context = context;
             this.url = url;
-            this.ChatroomName = ChatroomName;
-            this.owner = owner;
-            this.memberlist = memberlist;
+            this.roomlist = roomlist;
         }
 
         @Override
@@ -174,12 +161,8 @@ public class AddroomActivity extends AppCompatActivity {
         protected String doInBackground(Void... params) {
 
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("ChatroomName=");
-            stringBuilder.append(ChatroomName);
-            stringBuilder.append("&owner=");
-            stringBuilder.append(owner);
-            stringBuilder.append("&members=");
-            stringBuilder.append(memberlist);
+            stringBuilder.append("rooms=");
+            stringBuilder.append(roomlist);
             String api = stringBuilder.toString();
             Log.v("api",api);
             String status = Common.Post_Gen(url,api);
@@ -204,16 +187,8 @@ public class AddroomActivity extends AppCompatActivity {
                     String status = jsonObject.getString("status");
                     Log.v("status",status);
                     if(status.equals("OK")){
-                        Toast t = Toast.makeText(AddroomActivity.this,"Add successful", Toast.LENGTH_LONG);
+                        Toast t = Toast.makeText(DelroomActivity.this,"Delete successful", Toast.LENGTH_LONG);
                         t.show();
-                    }
-                    else{
-                        String reason = jsonObject.getString("message");
-                        Log.v("reason", reason);
-                        if(reason.equals("RoomExisted")){
-                            Toast t = Toast.makeText(AddroomActivity.this,"This Room already exists", Toast.LENGTH_LONG);
-                            t.show();
-                        }
                     }
                 } catch(JSONException e){
                     e.printStackTrace();
