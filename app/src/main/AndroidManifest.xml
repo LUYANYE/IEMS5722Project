@@ -16,11 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="hk.edu.cuhk.ie.iems5722.group21.activity.AboutusActivity"></activity>
+        <activity android:name=".activity.DelroomActivity"
+                  android:parentActivityName=".activity.MainActivity"/>
         <activity
-            android:name="hk.edu.cuhk.ie.iems5722.group21.activity.SignupActivity"
-            android:parentActivityName="hk.edu.cuhk.ie.iems5722.group21.activity.LoginActivity" />
-        <activity android:name="hk.edu.cuhk.ie.iems5722.group21.activity.LoginActivity">
+            android:name=".activity.AddroomActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.AboutusActivity" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:parentActivityName=".activity.LoginActivity" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +33,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="hk.edu.cuhk.ie.iems5722.group21.activity.ChatroomActivity"
-            android:parentActivityName="hk.edu.cuhk.ie.iems5722.group21.activity.MainActivity" />
+            android:name=".activity.ChatroomActivity"
+            android:parentActivityName=".activity.MainActivity" />
         <activity
-            android:name="hk.edu.cuhk.ie.iems5722.group21.activity.MainActivity"
-            android:parentActivityName="hk.edu.cuhk.ie.iems5722.group21.activity.LoginActivity" />
+            android:name=".activity.MainActivity"
+            android:parentActivityName=".activity.LoginActivity" />
     </application>
 
 </manifest>

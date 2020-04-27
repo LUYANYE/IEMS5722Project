@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainui"
     tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,16 +20,64 @@
         app:title="IEMS 5722"
         app:titleTextColor="#ffffff"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        >
 
+        <ImageButton
+            android:id="@+id/main_RefreshButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/refresh"
+            android:layout_gravity="end"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/chatroom_list"
         android:divider="@null"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+        android:layout_below="@+id/toolbar"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/mainui"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/left_tv"
+            android:text="@string/main_hint"
+            android:textColor="@color/app_white"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/left_add"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/app_white"
+            android:textSize="15sp"
+            android:text="@string/add"/>
+
+        <Button
+            android:id="@+id/left_del"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/app_red"
+            android:textColor="@color/app_white"
+            android:textSize="15sp"
+            android:text="@string/delete"/>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

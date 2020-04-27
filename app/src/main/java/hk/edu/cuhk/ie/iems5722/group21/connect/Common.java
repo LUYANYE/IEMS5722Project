@@ -222,4 +222,58 @@ public class Common {
         return status;
     }
     // END Login
+
+    // POST General
+    public static String Post_Gen(String Url, String api){
+        String status = null;
+        Log.v("api",api);
+        try {
+            URL url = new URL(Url);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            conn.setUseCaches(false);
+            // 设置接收数据的格式:json格式数据
+            conn.setRequestProperty("Accept", "application/json");
+            //设置请求数据类型
+            // conn.setRequestProperty("Content-Type","text/html");
+            //链接并发送
+            conn.connect();
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(api);
+            writer.flush();
+            writer.close();
+            os.close();
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 通过连接对象获取一个输入流，向远程读取
+                InputStream inputStream=conn.getInputStream();
+                byte[] data=new byte[1024];
+                StringBuffer sb1=new StringBuffer();
+                int length=0;
+                while ((length=inputStream.read(data))!=-1){
+                    String s=new String(data, 0,length);
+                    sb1.append(s);
+                }
+                status=sb1.toString();
+                inputStream.close();
+            }
+            //关闭连接
+            conn.disconnect();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+    // END POST General
+
 }

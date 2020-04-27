@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:lines="1"
         android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:hint="@string/hint_username"
         android:textColorHint="@color/app_white"
         android:textColor="@color/app_white"
@@ -32,6 +34,8 @@
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_below="@id/login_username"
         android:textColor="@color/app_white"
         android:textColorHint="@color/app_white"/>
@@ -43,6 +47,7 @@
         android:layout_below="@id/login_password"
         android:layout_marginTop="35dp"
         android:background="@color/colorPrimaryDark"
+        android:textSize="20sp"
         android:text="@string/button_confirm"
         android:layout_centerHorizontal="true"
         android:textColor="@color/app_white" />
@@ -54,6 +59,7 @@
         android:layout_below="@id/btn_login"
         android:layout_marginTop="35dp"
         android:background="@color/app_blue"
+        android:textSize="20sp"
         android:text="@string/registration"
         android:layout_centerHorizontal="true"
         android:textColor="@color/app_white" />
@@ -65,6 +71,7 @@
         android:layout_below="@id/btn_registered"
         android:layout_marginTop="35dp"
         android:background="#FF8000"
+        android:textSize="20sp"
         android:text="@string/about_us"
         android:layout_centerHorizontal="true"
         android:textColor="@color/app_white" />
