@@ -72,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = LoginActivity.this;
-                Intent intent_chatroom = new Intent(context, SignupActivity.class);
-                context.startActivity(intent_chatroom);
+                Intent intent = new Intent(context, SignupActivity.class);
+                context.startActivity(intent);
             }
         });
 
@@ -82,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = LoginActivity.this;
-                Intent intent_chatroom = new Intent(context, AboutusActivity.class);
-                context.startActivity(intent_chatroom);
+                Intent intent = new Intent(context, AboutusActivity.class);
+                context.startActivity(intent);
             }
         });
     }
@@ -137,14 +137,14 @@ public class LoginActivity extends AppCompatActivity {
                         t.show();
                         String user_id = jsonObject.getString("userid");
                         Context context = LoginActivity.this;
-                        Intent intent_chatroom = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, MainActivity.class);
                         Bundle b = new Bundle();
                         Log.v("name", name);
                         Log.v("user_id", user_id);
                         b.putString("name",name);
                         b.putString("user_id",user_id);
-                        intent_chatroom.putExtras(b);
-                        context.startActivity(intent_chatroom);
+                        intent.putExtras(b);
+                        context.startActivity(intent);
                     }
                     else{
                         String reason = jsonObject.getString("message");
