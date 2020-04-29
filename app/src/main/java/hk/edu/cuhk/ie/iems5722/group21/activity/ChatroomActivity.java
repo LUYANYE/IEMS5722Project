@@ -375,6 +375,13 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
                 try {
                     String status = jsonObject.getString("status");
                     Log.v("status",status);
+                    if(status.equals("ERROR")){
+                        String reason = jsonObject.getString("message");
+                        if(reason.equals("RoomNotExisted")) {
+                            Toast t = Toast.makeText(ChatroomActivity.this, "This room have been deleted", Toast.LENGTH_LONG);
+                            t.show();
+                        }
+                    }
                 } catch(JSONException e){
                     e.printStackTrace();
                 }
