@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                         String reason = jsonObject.getString("message");
                         Log.v("reason", reason);
                         if(reason.equals("UserNotExisted")){
-                            Toast t = Toast.makeText(LoginActivity.this,"This user is not exists", Toast.LENGTH_LONG);
+                            Toast t = Toast.makeText(LoginActivity.this,"This user does not exist", Toast.LENGTH_LONG);
                             t.show();
                         }
                         if(reason.equals("Worrypwd")){
