@@ -39,8 +39,8 @@ public class AddroomActivity extends AppCompatActivity {
     private ArrayList<User> UserList = new ArrayList<>();
     private UserAdapter adapter;
     ListView listView;
-    private String url = "http://18.188.52.141/api/a3/get_users";
-    private String url2= "http://18.188.52.141/api/a3/add_room";
+    private String url = "http://18.188.50.202/api/a3/get_users";
+    private String url2= "http://18.188.50.202/api/a3/add_room";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

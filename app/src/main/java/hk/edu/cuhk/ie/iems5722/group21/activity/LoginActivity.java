@@ -25,7 +25,7 @@ import hk.edu.cuhk.ie.iems5722.group21.connect.Common;
 public class LoginActivity extends AppCompatActivity {
 
     MessageDigest md;
-    private String url = "http://18.188.52.141/api/a3/login";
+    private String url = "http://18.188.50.202/api/a3/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

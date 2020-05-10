@@ -41,8 +41,8 @@ public class DelroomActivity extends AppCompatActivity {
     private ArrayList<Chatroom> ChatroomList = new ArrayList<>();
     private DelroomAdapter adapter;
     ListView listView;
-    private String url = "http://18.188.52.141/api/a3/get_ownchatrooms";
-    private String url2= "http://18.188.52.141/api/a3/del_ownchatrooms";
+    private String url = "http://18.188.50.202/api/a3/get_ownchatrooms";
+    private String url2= "http://18.188.50.202/api/a3/del_ownchatrooms";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

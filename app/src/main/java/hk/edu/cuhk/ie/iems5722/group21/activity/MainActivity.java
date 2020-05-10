@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Chatroom> ChatroomList = new ArrayList<>();
     private ChatroomAdapter adapter;
-    private String url = "http://18.188.52.141/api/a3/get_chatrooms";
+    private String url = "http://18.188.50.202/api/a3/get_chatrooms";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

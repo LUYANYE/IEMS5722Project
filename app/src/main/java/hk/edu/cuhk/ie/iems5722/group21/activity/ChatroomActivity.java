@@ -48,8 +48,8 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
     private ListView listView;
     private int total_pages;
     private int current_page;
-    private String url = "http://18.188.52.141/api/a3/get_messages";
-    private String post_url = "http://18.188.52.141/api/a3/send_message";
+    private String url = "http://18.188.50.202/api/a3/get_messages";
+    private String post_url = "http://18.188.50.202/api/a3/send_message";
     private boolean isLoad = false;
     private int chatroom_id;
     private Socket socket;
@@ -166,7 +166,7 @@ public class ChatroomActivity extends AppCompatActivity implements AbsListView.O
         getMsgs(b,current_page);
 
         try {
-            socket = IO.socket("http://18.188.52.141:8001/");
+            socket = IO.socket("http://18.188.50.202:8001/");
             socket.on(Socket.EVENT_CONNECT,  onConnectSuccess);
             socket.on("messages", Message_Broadcast);
             socket.connect();
